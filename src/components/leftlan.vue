@@ -3,7 +3,7 @@
     <el-row class="tac">
       <el-col :span="4">
         <!-- 标题 -->
-        <div class="title">
+        <div class="title" @click="back">
           <img src="img/logo.ico" alt>
           <span>学子商城后台</span>
         </div>
@@ -18,7 +18,7 @@
         </div>
         <!-- 后台首页 -->
         <div class="back_index">
-          <p>后台首页</p>
+          <p @click="back">后台首页</p>
         </div>
         <!-- 功能分栏 -->
         <el-menu
@@ -40,9 +40,9 @@
               <span>商品管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="1-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
-              <el-menu-item index="1-3">选项3</el-menu-item>
+              <el-menu-item index="1-1" @click="list">商品列表</el-menu-item>
+              <el-menu-item index="1-2">多条件搜索</el-menu-item>
+              <el-menu-item index="1-3">添加商品</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <!-- 用户管理 -->
@@ -52,8 +52,8 @@
               <span>用户管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="1-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
+              <el-menu-item index="1-1" @click="userList">用户列表</el-menu-item>
+              <el-menu-item index="1-2">用户检索</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <!-- 订单管理 -->
@@ -63,8 +63,8 @@
               <span>订单管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="1-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
+              <el-menu-item index="1-1">订单列表</el-menu-item>
+              <el-menu-item index="1-2">搜索订单</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <div class="data-m">
@@ -74,12 +74,13 @@
           <el-submenu index="4">
             <template slot="title">
               <i class="el-icon-location"></i>
-              <span>商品首页管理</span>
+              <span>首页商品管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="1-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
-              <el-menu-item index="1-3">选项3</el-menu-item>
+              <el-menu-item index="1-1">轮播广告</el-menu-item>
+              <el-menu-item index="1-2">首页推荐</el-menu-item>
+              <el-menu-item index="1-3">最新上架</el-menu-item>
+              <el-menu-item index="1-4">热销单品</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <!-- 用户管理 -->
@@ -89,13 +90,13 @@
               <span>功能页面</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="1-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
+              <el-menu-item index="1-1">403错误页面</el-menu-item>
+              <el-menu-item index="1-2">404错误页面</el-menu-item>
+              <el-menu-item index="1-3">500错误页面</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
       </el-col>
-      <header :span="20"></header>
     </el-row>
   </div>
 </template>
@@ -110,6 +111,15 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
+    },
+    list(){
+      this.$router.push("/list")
+    },
+    back(){
+      this.$router.push("/index")
+    },
+    userList(){
+      this.$router.push("/userlist")
     }
   }
 };
@@ -147,6 +157,7 @@ export default {
 }
 /* 返回首页 */
 .back_index {
+  cursor: pointer;
   color: #fff;
   padding-left: 20px;
 }
@@ -155,8 +166,8 @@ export default {
   height: 48rem;
   background: #545c64;
 }
-.el-col-4{
-  width:215px;
+.el-col-4 {
+  width: 215px;
 }
 /* 数据管理 */
 .data-m {
@@ -165,10 +176,5 @@ export default {
   color: #fff;
   padding-left: 20px;
 }
-/* 头部 */
-header {
-  height: 3.5rem;
-  background: rgba(61, 68, 68, 0.5);
-  line-height: 80px;
-}
 </style>
+
